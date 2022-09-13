@@ -18,3 +18,4 @@ web-build/
 *.lock
 *.lock
 server/yarn.lock
+*.lock
