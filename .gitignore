@@ -1,1 +1,20 @@
 node_modules
+build
+yarn.lock
+
+.expo/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+# macOS
+.DS_Store
+*.lock
+*.lock
+server/yarn.lock
