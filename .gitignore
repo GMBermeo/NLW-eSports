@@ -19,3 +19,5 @@ web-build/
 *.lock
 server/yarn.lock
 *.lock
+*.lock
+server/yarn.lock
