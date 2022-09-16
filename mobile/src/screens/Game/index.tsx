@@ -7,6 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Background } from "../../components/Background";
 import { Heading } from "../../components/Heading";
 import { DuoCard, DuoCardProps } from "../../components/DuoCard";
+import { DuoMatch } from "../../components/DuoMatch";
 
 import logoImg from "../../assets/logo-nlw-esports.png";
 import { s } from "./styles";
@@ -14,6 +15,7 @@ import { THEME } from "../../theme";
 
 export function Game() {
   const [duos, setDuos] = useState<DuoCardProps[]>([]);
+  const [discordDuoSelected, setDiscordDuoSelected] = useState("");
 
   const navigation = useNavigation();
   const route = useRoute();
@@ -21,6 +23,12 @@ export function Game() {
 
   function handleGoBack() {
     navigation.goBack();
+  }
+
+  async function getDiscordUser(adsId: string) {
+    fetch(`http://10.61.80.77:3334/ads/${adsId}/discord`)
+      .then((response) => response.json())
+      .then((data) => setDiscordDuoSelected(data.discord));
   }
 
   React.useEffect(() => {
@@ -54,7 +62,7 @@ export function Game() {
           data={duos}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <DuoCard data={item} onConnect={() => {}} />
+            <DuoCard data={item} onConnect={() => getDiscordUser(item.id)} />
           )}
           horizontal
           style={s.containerList}
@@ -67,6 +75,11 @@ export function Game() {
               Não há anúncios publicados ainda.
             </Text>
           )}
+        />
+        <DuoMatch
+          visible={discordDuoSelected.length > 0}
+          discord={discordDuoSelected}
+          onClose={() => setDiscordDuoSelected("")}
         />
       </SafeAreaView>
     </Background>

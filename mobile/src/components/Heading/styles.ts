@@ -9,6 +9,7 @@ export const s = StyleSheet.create({
     fontFamily: THEME.FONT_FAMILY.BLACK,
   },
   subtitle: {
+    marginTop: 4,
     color: THEME.COLORS.CAPTION_400,
     fontSize: THEME.FONT_SIZE.MD,
     fontFamily: THEME.FONT_FAMILY.REGULAR,
